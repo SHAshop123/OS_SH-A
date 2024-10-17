@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SH/A OS - Shopping Experience</title>
+    <link rel="shortcut icon" href="./images/logo.png">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="./images/logo.png" alt="SH/A OS Logo" width="50">
+            <h1>SH/A OS</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#" id="pocketLink">basket (<span id="pocketCount">0</span>)</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="products" class="products"></div>
+        <div id="pocket" class="pocket">
+            <h2>Shopping basket</h2>
+            <div id="pocketItems"></div>
+            <div id="pocketTotal">Total: $<span id="totalAmount">0</span></div>
+            <button id="checkoutBtn" class="primary-btn">Proceed to Checkout</button>
+        </div>
+    </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Checkout</h2>
+            <p class="warning-text">Please note: Orders cannot be cancelled once placed.</p>
+            <form id="checkoutForm">
+                <label for="name">Full Name (First and Last):</label>
+                <input type="text" id="name" required placeholder="Enter your full name">
+                
+                <label for="phone">Phone Number (minimum 10 digits):</label>
+                <input type="tel" id="phone" required placeholder="Enter your phone number">
+                
+                <div class="button-group">
+                    <button type="button" id="backToPocket" class="secondary-btn">Back to Pocket</button>
+                    <button type="submit" class="primary-btn">Place Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
