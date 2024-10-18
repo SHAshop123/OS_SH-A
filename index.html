@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SH-A_OS_app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="./images/logo.jpg" alt="Logo">
+            <span>SH-A_OS_app</span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-btn" onclick="openModal('aboutModal')">About Us</button>
+            <button class="nav-btn" onclick="openModal('contactModal')">Contact Us</button>
+            <button class="pocket-btn" onclick="togglePocket()">
+                Pocket (<span id="itemCount">0</span>)
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section id="products" class="products">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./images/product1.jpg" alt="Product 1">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Casual T-Shirt</h2>
+                    <p class="product-price">100 sum</p>
+                    <button class="primary-btn" onclick="addToPocket('Casual T-Shirt', 100)">Add to Pocket</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./images/product2.jpg" alt="Product 2">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Classic Jeans</h2>
+                    <p class="product-price">150 sum</p>
+                    <button class="primary-btn" onclick="addToPocket('Classic Jeans', 150)">Add to Pocket</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./images/product3.jpg" alt="Product 3">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Sport Shoes</h2>
+                    <p class="product-price">200 sum</p>
+                    <button class="primary-btn" onclick="addToPocket('Sport Shoes', 200)">Add to Pocket</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./images/product4.jpg" alt="Product 4">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Leather Jacket</h2>
+                    <p class="product-price">300 sum</p>
+                    <button class="primary-btn" onclick="addToPocket('Leather Jacket', 300)">Add to Pocket</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./images/product5.jpg" alt="Product 5">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Winter Coat</h2>
+                    <p class="product-price">250 sum</p>
+                    <button class="primary-btn" onclick="addToPocket('Winter Coat', 250)">Add to Pocket</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./images/product6.jpg" alt="Product 6">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Summer Dress</h2>
+                    <p class="product-price">180 sum</p>
+                    <button class="primary-btn" onclick="addToPocket('Summer Dress', 180)">Add to Pocket</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('aboutModal')">&times;</span>
+            <h2>About Us</h2>
+            <p>Your about us content goes here. Describe your shop, your values, and your mission.</p>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contactName">Name:</label>
+                    <input type="text" id="contactName" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email:</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message:</label>
+                    <textarea id="contactMessage" required></textarea>
+                </div>
+                <button type="submit" class="primary-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('checkoutModal')">&times;</span>
+            <h2>Checkout</h2>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="userName">Full Name:</label>
+                    <input type="text" id="userName" required>
+                </div>
+                <div class="form-group">
+                    <label for="userPhone">Phone Number:</label>
+                    <input type="tel" id="userPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="userAddress">Delivery Address:</label>
+                    <textarea id="userAddress" required></textarea>
+                </div>
+                <button type="submit" class="primary-btn">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pocket Sidebar -->
+    <div class="pocket">
+        <h2>Your Pocket</h2>
+        <div id="pocket-items"></div>
+        <div id="pocketTotal">Total: 0 sum</div>
+        <div class="button-group">
+            <button class="primary-btn" onclick="openCheckout()">Checkout</button>
+            <button class="secondary-btn" onclick="togglePocket()">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 SH-A_OS_app. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
