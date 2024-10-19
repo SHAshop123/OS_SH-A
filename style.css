@@ -1,9 +1,9 @@
 :root {
-    --primary-color: #000; /* Black */
-    --secondary-color: #fff; /* White */
-    --accent-color: #e0e0e0; /* Light gray */
-    --text-color: #333; /* Dark gray for text */
-    --background-color: #f8f8f8; /* Light gray for background */
+    --primary-color: #000;
+    --secondary-color: #fff;
+    --accent-color: #e0e0e0;
+    --text-color: #333;
+    --background-color: #f8f8f8;
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -21,10 +21,9 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar Styles */
 .navbar {
     background-color: var(--primary-color);
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,13 +41,13 @@ body {
 }
 
 .logo img {
-    height: 40px;
+    height: 30px;
     width: auto;
 }
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 0.5rem;
     align-items: center;
 }
 
@@ -57,9 +56,9 @@ body {
     border: none;
     color: var(--secondary-color);
     cursor: pointer;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.3rem;
     transition: all 0.3s ease;
 }
 
@@ -67,20 +66,18 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Products Grid */
 .products {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
     max-width: 1400px;
     margin: 0 auto;
 }
 
-/* Product Card Styles */
 .product-card {
     background-color: var(--secondary-color);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
@@ -89,7 +86,7 @@ body {
 }
 
 .product-image {
-    height: 250px;
+    height: 120px;
     overflow: hidden;
 }
 
@@ -105,35 +102,34 @@ body {
 }
 
 .product-info {
-    padding: 1.5rem;
+    padding: 0.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.25rem;
 }
 
 .product-title {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
 }
 
 .product-price {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: bold;
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Pocket Styles */
 .pocket {
     position: fixed;
     top: 0;
-    right: -350px;
-    width: 350px;
+    right: -100%;
+    width: 100%;
     height: 100%;
     background-color: var(--secondary-color);
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    padding: 2rem;
+    padding: 1rem;
     overflow-y: auto;
     z-index: 999;
 }
@@ -144,28 +140,29 @@ body {
 
 .pocket h2 {
     color: var(--primary-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
 }
 
 .pocket-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
     border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
 }
 
-/* Button Styles */
 .primary-btn, .secondary-btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     border: none;
     transition: all 0.3s ease;
-    text-decoration: none; /* Ensure no underline on links */
-    display: inline-block; /* Make links behave like buttons */
+    text-decoration: none;
+    display: inline-block;
 }
 
 .primary-btn {
@@ -189,11 +186,10 @@ body {
 
 .button-group {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 
-/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -210,19 +206,19 @@ body {
     position: relative;
     background-color: var(--secondary-color);
     margin: 5% auto;
-    padding: 2rem;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 1rem;
+    padding: 1rem;
+    width: 95%;
+    max-width: 400px;
+    border-radius: 0.5rem;
     box-shadow: var(--shadow-md);
     animation: slideIn 0.3s ease;
 }
 
 .close {
     position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    font-size: 2rem;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1.5rem;
     cursor: pointer;
     color: var(--text-color);
     transition: color 0.3s ease;
@@ -232,24 +228,24 @@ body {
     color: var(--accent-color);
 }
 
-/* Form Styles */
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     font-weight: bold;
+    font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.5rem;
     border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    font-size: 1rem;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
     transition: border-color 0.3s ease;
 }
 
@@ -260,20 +256,19 @@ body {
 }
 
 .form-group textarea {
-    min-height: 100px;
+    min-height: 80px;
     resize: vertical;
 }
 
-/* Footer Styles */
 .footer {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     text-align: center;
-    padding: 1.5rem;
+    padding: 1rem;
     margin-top: auto;
+    font-size: 0.8rem;
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -284,50 +279,55 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .navbar {
-        padding: 1rem;
+        padding: 1rem 2rem;
     }
 
     .nav-links {
         gap: 1rem;
     }
 
+    .nav-btn, .pocket-btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
     .products {
-        padding: 1rem;
-    }
-
-    .pocket {
-        width: 100%;
-        right: -100%;
-    }
-
-    .modal-content {
-        margin: 10% auto;
-        width: 95%;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
         padding: 1.5rem;
     }
-}
 
-@media (max-width: 480px) {
     .product-image {
-        height: 200px;
+        height: 180px;
     }
 
     .product-info {
         padding: 1rem;
     }
 
-    .nav-links {
-        gap: 0.5rem;
+    .product-title {
+        font-size: 1.2rem;
     }
 
-    .nav-btn, .pocket-btn {
-        padding: 0.5rem;
+    .product-price {
+        font-size: 1.1rem;
+    }
+
+    .pocket {
+        width: 350px;
+        right: -350px;
     }
 
     .modal-content {
-        margin: 5% auto;
+        padding: 2rem;
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .products {
+        grid-template-columns: repeat(5, 1fr);
     }
 }
