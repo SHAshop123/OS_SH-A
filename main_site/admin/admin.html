@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SH/A_OS Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+    <div id="intro-animation" class="intro">
+        <div class="intro-content">
+            <h1>SH/A_OS</h1>
+            <p>Synergistic Holographic Artificial Operating System</p>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+            </div>
+            <nav class="sidebar-menu">
+                <div class="menu-item active" data-page="dashboard">Dashboard</div>
+                <div class="menu-item" data-page="products">Products</div>
+                <div class="menu-item" data-page="add-product">Add Product</div>
+            </nav>
+        </aside>
+
+        <main class="main-content" role="main">
+            <header class="header">
+                <h1 id="page-title">Dashboard</h1>
+            </header>
+
+            <div id="dashboard-page" class="page active">
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 id="total-products" class="card-title">Total Products</h3>
+                        </div>
+                        <div id="total-products-value" class="card-value">0</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 id="active-products" class="card-title">Active Products</h3>
+                        </div>
+                        <div id="active-products-value" class="card-value">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="products-page" class="page">
+                <div class="table-container">
+                    <table id="products-table" class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="add-product-page" class="page">
+                <form id="add-product-form" class="form">
+                    <div class="form-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" id="product-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Price</label>
+                        <input type="number" id="product-price" name="price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">Description</label>
+                        <textarea id="product-description" name="description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-image">Image URL</label>
+                        <input type="url" id="product-image" name="image" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-status">Status</label>
+                        <select id="product-status" name="status" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Product</h2>
+            <form id="edit-product-form" class="form">
+                <input type="hidden" id="edit-product-id" name="id">
+                <div class="form-group">
+                    <label for="edit-product-name">Product Name</label>
+                    <input type="text" id="edit-product-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-price">Price</label>
+                    <input type="number" id="edit-product-price" name="price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-description">Description</label>
+                    <textarea id="edit-product-description" name="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-image">Image URL</label>
+                    <input type="url" id="edit-product-image" name="image" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-status">Status</label>
+                    <select id="edit-product-status" name="status" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Product</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal('edit-modal')">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="settings-bar">
+        <button id="settings-toggle">Settings</button>
+        <div class="settings-content">
+            <h3>Language</h3>
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ja">日本語</option>
+            </select>
+            <h3>Theme</h3>
+            <select id="theme-select">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="purple">Purple</option>
+            </select>
+            <h3>Font Size</h3>
+            <select id="font-size-select">
+                <option value="small">Small</option>
+                <option value="medium" selected>Medium</option>
+                <option value="large">Large</option>
+            </select>
+            <h3>Animation Speed</h3>
+            <select id="animation-speed-select">
+                <option value="slow">Slow</option>
+                <option value="normal" selected>Normal</option>
+                <option value="fast">Fast</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
