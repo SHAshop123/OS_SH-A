@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./main_site/images/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SH/A_OS Loading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --loader-size: min(200px, 40vw);
+            --font-size: min(24px, 5vw);
+            --progress-height: min(2px, 0.5vw);
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .loader-container {
+            position: relative;
+            width: var(--loader-size);
+            height: var(--loader-size);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .loader-container.complete {
+            transform: scale(0.3) translate(-150%, -150%);
+        }
+
+        @media (max-width: 768px) {
+            .loader-container.complete {
+                transform: scale(0.25) translate(-180%, -180%);
+            }
+        }
+
+        .loader-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: min(2px, 0.4vw) solid transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        .loader-circle:nth-child(1) {
+            border-top: min(2px, 0.4vw) solid #0ff;
+            border-right: min(2px, 0.4vw) solid #0ff;
+        }
+
+        .loader-circle:nth-child(2) {
+            border-top: min(2px, 0.4vw) solid #f0f;
+            border-left: min(2px, 0.4vw) solid #f0f;
+            scale: 0.8;
+            animation-duration: 1.5s;
+            animation-direction: reverse;
+        }
+
+        .loader-circle:nth-child(3) {
+            border-top: min(2px, 0.4vw) solid #ff0;
+            border-bottom: min(2px, 0.4vw) solid #ff0;
+            scale: 0.6;
+            animation-duration: 2s;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .brand {
+            position: absolute;
+            font-size: var(--font-size);
+            color: #fff;
+            letter-spacing: min(3px, 0.6vw);
+            text-align: center;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: glitch 2s infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes glitch {
+            0%, 100% { 
+                transform: translateY(-50%) scale(1);
+                text-shadow: none;
+                opacity: 1;
+            }
+            20% { 
+                transform: translateY(-52%) scale(1.02);
+                text-shadow: 2px 0 #0ff, -2px 0 #f0f;
+                opacity: 0.9;
+            }
+            40% { 
+                transform: translateY(-48%) scale(0.98);
+                text-shadow: -2px 0 #0ff, 2px 0 #f0f;
+                opacity: 0.8;
+            }
+            60% { 
+                transform: translateY(-50%) scale(1);
+                text-shadow: 1px 1px #0ff, -1px -1px #f0f;
+                opacity: 1;
+            }
+            80% { 
+                transform: translateY(-51%) scale(1.01);
+                text-shadow: -1px 1px #0ff, 1px -1px #f0f;
+                opacity: 0.9;
+            }
+        }
+
+        .progress {
+            position: absolute;
+            bottom: min(-40px, -8vw);
+            width: 100%;
+            height: var(--progress-height);
+            background: #111;
+            border-radius: var(--progress-height);
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #0ff, #f0f, #ff0);
+            transition: width 3s linear;
+            border-radius: var(--progress-height);
+        }
+
+        .progress-text {
+            position: absolute;
+            bottom: min(-60px, -12vw);
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-family: monospace;
+            font-size: min(14px, 3vw);
+            opacity: 0.8;
+        }
+
+        .dots {
+            display: inline-block;
+            width: min(20px, 4vw);
+            text-align: left;
+            animation: dots 1s infinite;
+        }
+
+        @keyframes dots {
+            0% { content: "."; }
+            33% { content: ".."; }
+            66% { content: "..."; }
+        }
+
+        .background-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(transparent 95%, #111 95%),
+                linear-gradient(90deg, transparent 95%, #111 95%);
+            background-size: min(50px, 10vw) min(50px, 10vw);
+            opacity: 0.2;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: min(2px, 0.4vw);
+            height: min(2px, 0.4vw);
+            background: #fff;
+            opacity: 0;
+        }
+
+        @keyframes particle {
+            0% {
+                transform: translate(0, 0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .particles {
+                display: none; /* Improve performance on mobile */
+            }
+            
+            .background-grid {
+                opacity: 0.1; /* Subtle grid on mobile */
+            }
+        }
+
+        /* Portrait phones */
+        @media (max-width: 480px) {
+            :root {
+                --loader-size: 60vw;
+                --font-size: 6vw;
+            }
+        }
+
+        /* Landscape phones */
+        @media (max-height: 480px) {
+            :root {
+                --loader-size: 40vh;
+                --font-size: 4vh;
+            }
+            
+            .progress {
+                bottom: min(-20px, -4vh);
+            }
+            
+            .progress-text {
+                bottom: min(-35px, -7vh);
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #000;
+            }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .loader-circle,
+            .particle,
+            .brand {
+                animation-duration: 2s;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="particles" id="particles"></div>
+    <div class="loader-container" id="loader">
+        <div class="loader-circle"></div>
+        <div class="loader-circle"></div>
+        <div class="loader-circle"></div>
+        <div class="brand">SH/A_OS</div>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text">
+            Initializing System<span class="dots">...</span>
+        </div>
+    </div>
+
+    <script>
+        // Responsive particle system
+        const createParticles = () => {
+            const particles = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 25 : 50; // Fewer particles on mobile
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Responsive positioning
+                const size = Math.min(window.innerWidth, window.innerHeight);
+                const maxDistance = size * 0.2; // 20% of viewport
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.setProperty('--tx', (Math.random() * maxDistance - maxDistance/2) + 'px');
+                particle.style.setProperty('--ty', (Math.random() * maxDistance - maxDistance/2) + 'px');
+                particle.style.animation = `particle ${1 + Math.random() * 2}s linear infinite`;
+                
+                particles.appendChild(particle);
+            }
+        };
+
+        // Initialize particles
+        if (window.innerWidth >= 768) {
+            createParticles();
+        }
+
+        // Progress bar and transition
+        const progressBar = document.getElementById('progressBar');
+        const loader = document.getElementById('loader');
+
+        // Start progress
+        setTimeout(() => {
+            progressBar.style.width = '100%';
+        }, 100);
+
+        // After 3 seconds, transition and redirect
+        setTimeout(() => {
+            loader.classList.add('complete');
+            setTimeout(() => {
+                window.location.href = './main_site/index.html';
+            }, 500);
+        }, 3000);
+
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const particles = document.getElementById('particles');
+                particles.innerHTML = '';
+                if (window.innerWidth >= 768) {
+                    createParticles();
+                }
+            }, 250);
+        });
+    </script>
+</body>
+</html>
