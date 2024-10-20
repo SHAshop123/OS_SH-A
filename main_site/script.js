@@ -8,12 +8,12 @@ const chatIds = ['7594509157', '6144942025'];
 
 // Product data
 const products = [
-    { id: 1, name: 'Casual T-Shirt', price: 100, image: './images/product1.jpg' },
-    { id: 2, name: 'Classic Jeans', price: 150, image: './images/product2.jpg' },
-    { id: 3, name: 'Sport Shoes', price: 200, image: './images/product3.jpg' },
-    { id: 4, name: 'Leather Jacket', price: 300, image: './images/product4.jpg' },
-    { id: 5, name: 'Winter Coat', price: 250, image: './images/product5.jpg' },
-    { id: 6, name: 'Summer Dress', price: 180, image: './images/product6.jpg' },
+    { id: 1, name: 'Casual T-Shirt', price: 100, image: './images/logo.jpg' },
+    { id: 2, name: 'Classic Jeans', price: 150, image: './images/logo.jpg' },
+    { id: 3, name: 'Sport Shoes', price: 200, image: './images/logo.jpg' },
+    { id: 4, name: 'Leather Jacket', price: 300, image: './images/logo.jpg' },
+    { id: 5, name: 'Winter Coat', price: 250, image: './images/logo.jpg' },
+    { id: 6, name: 'Summer Dress', price: 180, image: './images/logo.jpg' },
 ];
 
 // Language translations
