@@ -1,3 +1,4 @@
+
 :root {
     --primary-color: #3a506b;
     --secondary-color: #ffffff;
@@ -629,4 +630,72 @@ body {
 
 .close-filter:hover {
     color: red; /* Changes color on hover for better visibility */
+}
+@media (max-width: 480px) {
+    /* Adjust logo font size for better visibility on smaller screens */
+    .logo {
+        font-size: 1rem; /* Smaller font for compact layout */
+    }
+
+    /* Reduce padding for the navbar to accommodate smaller screen sizes */
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    /* Optimize search bar for mobile view */
+    .search-bar input {
+        width: 90%; /* Full width on mobile */
+    }
+
+    .search-bar button {
+        padding: 0.6rem 0.8rem; /* Smaller padding for better fit */
+    }
+
+    /* Adjust product grid layout for smaller screens */
+    .products {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+        gap: 1rem; /* Smaller gaps between products */
+    }
+
+    .product-card {
+        margin: 0; /* Remove extra margins to make better use of space */
+    }
+
+    /* Modify pocket (cart) width for mobile screens */
+    .pocket {
+        width: 100%; /* Pocket takes full screen on mobile */
+        right: -100%; /* Hide pocket by default */
+    }
+
+    /* Full-width modal for mobile */
+    .modal-content {
+        width: 90%; /* Larger width on small screens */
+    }
+
+    /* Adjust checkout button for mobile */
+    .checkout-btn {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    /* Adjust cart icon size and spacing */
+    .cart-icon {
+        font-size: 1rem; /* Slightly smaller cart icon */
+    }
+
+    /* Adjust cart item layout for smaller screens */
+    .pocket-item {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    /* Mobile optimization for the filter curtain */
+    .filter-curtain {
+        width: 100%; /* Full-width filter on mobile */
+    }
+
+    /* Smaller padding for filter sections */
+    .filter-section {
+        margin: 1rem 0;
+    }
 }
