@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/logo.png">
     <title>SH-A_OS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -110,15 +111,15 @@
             <form id="checkoutForm">
                 <div class="form-group">
                     <label data-i18n="fullName">Full Name:</label>
-                    <input type="text" id="userName" required>
+                    <input type="text" id="userName" required> <!-- Ensure the ID matches -->
                 </div>
                 <div class="form-group">
                     <label data-i18n="phoneNumber">Phone Number:</label>
-                    <input type="tel" id="userPhone" required>
+                    <input type="tel" id="userPhone" required> <!-- Ensure the ID matches -->
                 </div>
                 <div class="form-group">
                     <label data-i18n="deliveryAddress">Delivery Address:</label>
-                    <textarea id="userAddress" required></textarea>
+                    <textarea id="userAddress" required></textarea> <!-- Ensure the ID matches -->
                 </div>
                 <button type="submit" class="primary-btn" data-i18n="placeOrder">Place Order</button>
             </form>
@@ -128,7 +129,7 @@
     <footer class="footer">
         <p>&copy; 2024 SH-A_OS. <span data-i18n="allRightsReserved">All rights reserved.</span></p>
     </footer>
-
+    <script src="./message.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
