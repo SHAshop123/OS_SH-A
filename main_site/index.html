@@ -4,53 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SH-A_OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="./images/logo.png" alt="Logo">
+            <img src="./images/logo.png" alt="SH-A_OS Logo">
             <span>SH-A_OS</span>
         </div>
+
         <div class="nav-links">
-            <button class="nav-btn" onclick="changeLanguage('en')">EN</button>
-            <button class="nav-btn" onclick="changeLanguage('ru')">RU</button>
-            <button class="nav-btn" onclick="changeLanguage('uz')">UZ</button>
+            <div class="language-select">
+                <button onclick="changeLanguage('en')">EN</button>
+                <button onclick="changeLanguage('ru')">RU</button>
+                <button onclick="changeLanguage('uz')">UZ</button>
+            </div>
+            
             <button class="nav-btn" onclick="openModal('aboutModal')" data-i18n="about">About Us</button>
             <button class="nav-btn" onclick="openModal('contactModal')" data-i18n="contact">Contact Us</button>
-            <button class="pocket-btn" onclick="togglePocket()">
-                <span data-i18n="pocket">Pocket</span> (<span id="itemCount">0</span>)
+            
+            <button class="cart-icon" onclick="togglePocket()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="itemCount">0</span>
+            </button>
+
+            <button class="menu-dots" onclick="toggleFilters()">
+                <i class="fas fa-ellipsis-v"></i>
             </button>
         </div>
     </nav>
 
-    <main id="products" class="products">
-        <!-- Product cards will be dynamically generated here -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <button id="searchBtn"><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="filter-curtain" id="filterCurtain">
+        <button class="close-filter" onclick="toggleFilters()">×</button>
+        <h3>Filters</h3>
+        <div class="filter-section">
+            <h4>Categories</h4>
+            <div id="categoryFilters"></div>
+        </div>
+        <div class="filter-section">
+            <h4>Price Range</h4>
+            <input type="range" id="priceRange" min="0" max="1000" value="1000">
+            <span id="priceValue">1000 sum</span>
+        </div>
+    </div>
+
+    <main>
+        <div id="products" class="products"></div>
     </main>
 
+    <div id="pocket" class="pocket">
+        <div class="pocket-header">
+            <h2>Your Cart</h2>
+            <button class="close-pocket" onclick="togglePocket()">×</button>
+        </div>
+        <div id="pocket-items"></div>
+        <div id="pocketTotal">Total: 0 sum</div>
+        <div class="pocket-buttons">
+            <button class="checkout-btn" onclick="openModal('checkoutModal')">Checkout</button>
+        </div>
+    </div>
+
+    <!-- About Modal -->
     <div id="aboutModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('aboutModal')">&times;</span>
             <h2 data-i18n="aboutUs">About Us</h2>
-            <p data-i18n="aboutUsContent">Your about us content goes here. Describe your shop, your values, and your mission.</p>
+            <p data-i18n="aboutUsContent">SH-A_OS is your premier destination for quality products.</p>
         </div>
     </div>
 
+    <!-- Contact Modal -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('contactModal')">&times;</span>
             <h2 data-i18n="contactUs">Contact Us</h2>
             <form id="contactForm">
                 <div class="form-group">
-                    <label for="contactName" data-i18n="name">Name:</label>
+                    <label data-i18n="name">Name:</label>
                     <input type="text" id="contactName" required>
                 </div>
                 <div class="form-group">
-                    <label for="contactEmail" data-i18n="email">Email:</label>
+                    <label data-i18n="email">Email:</label>
                     <input type="email" id="contactEmail" required>
                 </div>
                 <div class="form-group">
-                    <label for="contactMessage" data-i18n="message">Message:</label>
+                    <label data-i18n="message">Message:</label>
                     <textarea id="contactMessage" required></textarea>
                 </div>
                 <button type="submit" class="primary-btn" data-i18n="sendMessage">Send Message</button>
@@ -58,35 +102,26 @@
         </div>
     </div>
 
+    <!-- Checkout Modal -->
     <div id="checkoutModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('checkoutModal')">&times;</span>
             <h2 data-i18n="checkout">Checkout</h2>
             <form id="checkoutForm">
                 <div class="form-group">
-                    <label for="userName" data-i18n="fullName">Full Name:</label>
+                    <label data-i18n="fullName">Full Name:</label>
                     <input type="text" id="userName" required>
                 </div>
                 <div class="form-group">
-                    <label for="userPhone" data-i18n="phoneNumber">Phone Number:</label>
+                    <label data-i18n="phoneNumber">Phone Number:</label>
                     <input type="tel" id="userPhone" required>
                 </div>
                 <div class="form-group">
-                    <label for="userAddress" data-i18n="deliveryAddress">Delivery Address:</label>
+                    <label data-i18n="deliveryAddress">Delivery Address:</label>
                     <textarea id="userAddress" required></textarea>
                 </div>
                 <button type="submit" class="primary-btn" data-i18n="placeOrder">Place Order</button>
             </form>
-        </div>
-    </div>
-
-    <div id="pocket" class="pocket">
-        <h2 data-i18n="yourPocket">Your Pocket</h2>
-        <div id="pocket-items"></div>
-        <div id="pocketTotal">Total: 0 sum</div>
-        <div class="button-group">
-            <button class="primary-btn" onclick="openCheckout()" data-i18n="checkout">Checkout</button>
-            <button class="secondary-btn" onclick="togglePocket()" data-i18n="close">Close</button>
         </div>
     </div>
 
