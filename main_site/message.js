@@ -131,18 +131,26 @@ async function processOrder(orderData) {
 
 // Event listener for the order form
 document.addEventListener('DOMContentLoaded', () => {
-    const checkoutForm = document.querySelector('#checkoutForm'); // Updated to select the correct form
+    const checkoutForm = document.querySelector('#checkoutModal form');
     if (checkoutForm) {
         checkoutForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const orderData = {
-                fullName: document.getElementById('userName').value,
-                phoneNumber: document.getElementById('userPhone').value,
-                address: document.getElementById('userAddress').value
+                fullName: e.target.elements.fullName.value,
+                phoneNumber: e.target.elements.phoneNumber.value,
+                address: e.target.elements.address.value
             };
 
             await processOrder(orderData);
         });
     }
 });
+
+// Export functions for use in other modules
+export {
+    processOrder,
+    validatePhoneNumber,
+    formatPhoneNumber,
+    formatCurrency
+};
